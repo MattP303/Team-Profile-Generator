@@ -81,3 +81,39 @@ function addMember() {
 }
 
 // Gather engineer iformation if user opted to add 
+function engineerInput() {
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Please enter the engineers name:'
+        },
+        {
+            type: 'input',
+            name: 'employeeID',
+            message: 'Please enter the engineers employee ID:'
+        },
+        {
+            type: 'input',
+            name: 'employeeEmail',
+            message: 'Please enter the enigneers email:'
+        },
+        {
+            type: 'input',
+            name: 'githubUsername',
+            message: 'Please enter the engineers GitHub username:'
+        },
+    ])
+    .then((val) => {
+        const engineer = new Engineer(
+            val.name,
+            val.employeeID,
+            val.employeeEmail,
+            val.githubUsername
+        );
+        console.table(Engineer);
+        teamArray.push(Engineer);
+        addMember();
+    });
+}
