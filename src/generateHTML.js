@@ -4,21 +4,21 @@ const fs = require("fs");
 
 const employeeTemplates = path.resolve(__dirname, "../src");
 
-const generateHTML = (teamMembers) => {
+const generateHTML = (teamArray) => {
 const html = [];
 
 html.push(
-    teamMembers
+    teamArray
     .filter((employee) => employee.getRole() === "Manager")
     .map((manager) => generateManager(manager))
 );
 html.push(
-    teamMembers
+    teamArray
     .filter((employee) => employee.getRole() === "Engineer")
     .map((engineer) => generateEngineer(engineer))
 );
 html.push(
-    teamMembers
+    teamArray
     .filter((employee) => employee.getRole() === "Intern")
     .map((intern) => generateIntern(intern))
 );
@@ -39,7 +39,7 @@ return template;
 
 const generateEngineer = (engineer) => {
 let template = fs.readFileSync(
-path.resolve(templatesDir, "engineer.html"),
+path.resolve(employeeTemplates, "engineer.html"),
 "utf8"
 );
 template = replacePlaceholders(template, "name", engineer.getName());

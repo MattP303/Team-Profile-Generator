@@ -4,9 +4,9 @@ const inquirer = require('inquirer');
 const path = require('path');
 
 // Employee Class
-const manager = require('./lib/managerClass');
-const engineer = require('./lib/engineerClass');
-const intern = require('./lib/internClass');
+const Manager = require('./lib/managerClass');
+const Engineer = require('./lib/engineerClass');
+const Intern = require('./lib/internClass');
 
 // Set directory and path for HTML output
 const OUTPUT_DIR = path.resolve(__dirname, 'dist')
@@ -56,8 +56,8 @@ function managerInput() {
                 val.employeeEmail,
                 val.officeNumber
             );
-            console.table(Manager);
-            teamArray.push(Manager);
+            console.table(manager);
+            teamArray.push(manager);
             addMember();
         });
 }
@@ -74,12 +74,12 @@ function addMember() {
         },
     ])
     .then((val) => {
-        if (val.employeeType === 'engineer') {
+        if (val.employeeType === 'Engineer') {
             engineerInput();
-        } else if (val.employeeType === 'intern') {
+        } else if (val.employeeType === 'Intern') {
             internInput();
         } else {
-            generateHTML();
+            generateMemberHTML();
         }
     });
 }
@@ -116,8 +116,8 @@ function engineerInput() {
             val.employeeEmail,
             val.githubUsername
         );
-        console.table(Engineer);
-        teamArray.push(Engineer);
+        console.table(engineer);
+        teamArray.push(engineer);
         addMember();
     });
 }
@@ -154,15 +154,15 @@ function internInput() {
             val.employeeEmail,
             val.school
         );
-        console.table(Intern);
-        teamArray.push(Intern);
+        console.table(intern);
+        teamArray.push(intern);
         addMember();
     });
 }
 // Creat html file from user inputs
-function generateHTML() {
-    if (!fs.existsSync(dist)) {
-        fs.mkdirSync(dist);
+function generateMemberHTML() {
+    if (!fs.existsSync('./dist')) {
+        fs.mkdirSync('./dist');
     } else {
         fs.writeFileSync(outputPath, generateHTML(teamArray), 'utf-8');
         console.log('Great! Your new team profile is located in the dist directory.')
