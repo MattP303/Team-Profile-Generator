@@ -159,7 +159,7 @@ function internInput() {
         addMember();
     });
 }
-
+// Creat html file from user inputs
 function generateHTML() {
     if (!fs.existsSync(dist)) {
         fs.mkdirSync(dist);
@@ -169,4 +169,5 @@ function generateHTML() {
     }
 }
 
+// Fire user input function
 start();
