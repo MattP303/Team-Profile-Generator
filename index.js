@@ -143,7 +143,7 @@ function internInput() {
         },
         {
             type: 'input',
-            name: 'githubUsername',
+            name: 'school',
             message: 'Please enter the interns school:'
         },
     ])
